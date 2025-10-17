@@ -108,6 +108,12 @@ app.put("/api/profile", async (req, res) => {
     res.status(500).json({ error: "Server error updating profile" });
   }
 });
+app.get("/", (req, res) => {
+  res.send("✅ Krish Health API is running successfully on Azure!");
+});
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "Healthy", time: new Date().toISOString() });
+});
 
 // Start Server
 const PORT = process.env.PORT || 5000;
