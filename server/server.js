@@ -4,10 +4,19 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./models/User");
 const Appointment = require("./models/Appointment");
-const Contact = require("./models/Contact"); // ✅ changed from import to require
+const Contact = require("./models/Contact");
+
 const app = express();
 
-app.use(cors());
+// ✅ Allow only your deployed frontend to access the API
+app.use(
+  cors({
+    origin: "https://salmon-ground-00e1af510.3.azurestaticapps.net",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // ✅ Connect to MongoDB Atlas
